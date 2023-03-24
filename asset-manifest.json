@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/first-using-firebase-with-react/static/css/main.72390145.css",
+    "main.js": "/first-using-firebase-with-react/static/js/main.396ad1e8.js",
+    "index.html": "/first-using-firebase-with-react/index.html",
+    "main.72390145.css.map": "/first-using-firebase-with-react/static/css/main.72390145.css.map",
+    "main.396ad1e8.js.map": "/first-using-firebase-with-react/static/js/main.396ad1e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.72390145.css",
+    "static/js/main.396ad1e8.js"
+  ]
+}
