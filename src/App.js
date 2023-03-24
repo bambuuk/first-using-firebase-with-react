@@ -19,13 +19,13 @@ function App() {
     onValue(ref(db), (snapshot) => {
       setTodos([]);
       const data = snapshot.val();
-      if(data != null) {
-        Object.values(Object.values(data)[0]).map((todo) => {
+      if (data != null) {
+        Object.values(Object.values(data)[0]).forEach((todo) => {
           setTodos((oldArray) => [...oldArray, todo]);
         });
       }
     });
-  }, []) 
+  }, [])
 
   // write, 
   const writeToDatabase = () => {
@@ -60,31 +60,39 @@ function App() {
     remove(ref(db, ` /${todo.uuid}`));
   }
 
+  console.log(todos.length)
   return (
-    <div className="app">
-      <input type="text" value={todo} onChange={handleTodoChange} />
-      {
-        isEdit ? (
-          <>
-            <button onClick={handleSubmitChange}>submit change</button>
-            <button onClick={() => {
-              setIsEdit(false);
-              setTodo('');
-            }}>
-              X
-            </button>
-          </>
-        ) : (
-          <button onClick={writeToDatabase}>submit</button>
-        )
-      }
-      {todos.map((todo) => (
-        <div key={todo.uuid}>
-          <h1>{todo.todo}</h1>
-          <button onClick={() => handleUpdate(todo)}>update</button>
-          <button onClick={() => handleDelete(todo)}>delete</button>
-        </div>
-      ))}
+    <div className="app gradient">
+      <main className="">
+        <input type="text" value={todo} onChange={handleTodoChange} placeholder="Add some info" />
+        {
+          isEdit ? (
+            <>
+              <button onClick={handleSubmitChange}>submit change</button>
+              <button onClick={() => {
+                setIsEdit(false);
+                setTodo('');
+              }}>
+                X
+              </button>
+            </>
+          ) : (
+            <button onClick={writeToDatabase}>submit</button>
+          )
+        }
+        {
+          todos.length !== 0 ?
+            todos.map((todo) => (
+              <div key={todo.uuid}>
+                <h1>{todo.todo}</h1>
+                <button onClick={() => handleUpdate(todo)}>update</button>
+                <button onClick={() => handleDelete(todo)}>delete</button>
+              </div>
+            )) :
+            <h1>This list is empty now. Please, add some info for this list.</h1>
+        }
+      </main>
+      <footer></footer>
     </div>
   );
 }
